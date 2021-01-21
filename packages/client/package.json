@@ -1,0 +1,68 @@
+{
+  "name": "@toy-js/client",
+  "version": "1.1.1",
+  "description": "Simplify creation of remote service",
+  "module": "./lib/index.js",
+  "typings": "lib/types/index.d.ts",
+  "sideEffects": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jituanlin/toy-js.git"
+  },
+  "license": "MIT",
+  "keywords": [],
+  "scripts": {
+    "build": "rm -R ./lib & tsc"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "ava": {
+    "failFast": true,
+    "timeout": "60s",
+    "typescript": {
+      "rewritePaths": {
+        "src/": "build/main/"
+      }
+    },
+    "files": [
+      "!build/module/**"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "exclude": [
+      "**/*.spec.js"
+    ]
+  },
+  "dependencies": {
+    "@toy-js/shared": "^1.1.1",
+    "axios": "^0.21.1",
+    "fp-ts": "^3.0.0-alpha.6",
+    "ramda": "^0.27.1",
+    "rxjs": "^6.6.3"
+  },
+  "bugs": {
+    "url": "https://github.com/jituanlin/toy-js/issues"
+  },
+  "homepage": "https://github.com/jituanlin/toy-js#readme",
+  "author": "jituanlin <jituanlin@tencent.com>",
+  "main": "lib/client.js"
+}
