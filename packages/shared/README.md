@@ -1,11 +1,4 @@
 # `@toy-js/shared`
 
-> TODO: description
+The common module of toy-js
 
-## Usage
-
-```
-const shared = require('@toy-js/shared');
-
-// TODO: DEMONSTRATE API
-```
