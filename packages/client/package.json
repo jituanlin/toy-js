@@ -10,7 +10,13 @@
     "url": "git+https://github.com/jituanlin/toy-js.git"
   },
   "license": "MIT",
-  "keywords": ["toy-js","xhr","http","ajax","socket.io"],
+  "keywords": [
+    "toy-js",
+    "xhr",
+    "http",
+    "ajax",
+    "socket.io"
+  ],
   "scripts": {
     "build": "rm -R ./lib & tsc"
   },
@@ -38,5 +44,11 @@
   },
   "homepage": "https://github.com/jituanlin/toy-js#readme",
   "author": "jituanlin <jituanlin@tencent.com>",
-  "main": "lib/client.js"
+  "main": "lib/client.js",
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3"
+  }
 }

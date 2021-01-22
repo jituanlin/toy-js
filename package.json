@@ -5,7 +5,6 @@
   "main": "index.js",
   "devDependencies": {
     "@types/node": "^14.14.20",
-    "@types/ramda": "^0.27.34",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
     "eslint": "^7.8.0",
@@ -27,7 +26,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "fp-ts": "^3.0.0-alpha.6",
-    "ramda": "^0.27.1",
     "rxjs": "^6.6.3"
   },
   "author": "jituanlin",

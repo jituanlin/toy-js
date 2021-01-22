@@ -1,5 +1,4 @@
 import * as F from 'fp-ts';
-import * as R from 'ramda';
 
 import { Constructor, InvokePayload, Services } from '@toy-js/shared/lib/types';
 
@@ -19,8 +18,8 @@ const invokeService = (services: Services) => (
 ): F.taskEither.TaskEither<CodeError, unknown> => {
   const service = F.function.pipe(
     services,
-    R.find<Constructor<unknown>>(R.propEq('name', serviceName)),
-    F.either.fromNullable(() => new MissServiceError(serviceName))
+    F.readonlyArray.findFirst(service=>service.name === serviceName),
+    F.either.fromOption(() => new MissServiceError(serviceName))
   );
 
   const serviceInstance = F.function.pipe(

@@ -10,9 +10,14 @@
     "url": "git+https://github.com/jituanlin/toy-js.git"
   },
   "license": "MIT",
-  "keywords": ["toy-js","node","framework"],
+  "keywords": [
+    "toy-js",
+    "node",
+    "framework"
+  ],
   "scripts": {
-    "build": "rm -R ./lib & tsc"
+    "build": "rm -R ./lib & tsc",
+    "test": "jest"
   },
   "engines": {
     "node": ">=10"
@@ -27,7 +32,6 @@
     "@toy-js/shared": "^1.1.1",
     "axios": "^0.21.1",
     "fp-ts": "^3.0.0-alpha.6",
-    "ramda": "^0.27.1",
     "rxjs": "^6.6.3"
   },
   "bugs": {
@@ -40,5 +44,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3"
   }
 }

@@ -1,4 +1,4 @@
-# `@toy-js/server`
+# `@toy-js`
 
 A framework make create simple HTTP server easier.
 
