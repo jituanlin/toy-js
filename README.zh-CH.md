@@ -79,7 +79,7 @@ export const Demo = () => {
 };
 ```
 代码差异如下图:
-![img.png](assert/images/client-compare.png)
+![img.png](packages/server/assert/images/client-compare.png)
 
 对比直接在`React`中把服务import进来调用的代码示例, 使用`@toy-js/client`的代码只是稍微修改下服务
 的引用方式:
