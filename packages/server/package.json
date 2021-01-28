@@ -29,7 +29,7 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@toy-js/shared": "^1.1.1",
+    "@toy-js/shared": "^1.1.2",
     "axios": "^0.21.1",
     "fp-ts": "^3.0.0-alpha.6",
     "rxjs": "^6.6.3"

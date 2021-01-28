@@ -1,25 +1,18 @@
-import { createServer } from 'http';
-import { Context } from './types/Context'
+import { Context } from './types/Context';
+import { makeServer, ServerControl } from './makeServer';
 
-
-export const runServer = (context: Context): void => {
+export const runServer = (context: Context): ServerControl => {
   const config = context.serverConfigurator.getConfig();
-  const server = createServer((request, response) =>
-    context.incomingRequest$.next({
-      response,
-      payload: {
-        request,
-      },
-    })
-  );
 
+  const serverControl = makeServer(context.serverConfigurator.getConfig());
+
+  serverControl.request$.subscribe(context.incomingRequest$.next);
   context.incomingRequest$.subscribe(
     context.serverConfigurator.getSubscriber()
   );
 
   process.nextTick(() =>
-    server.listen(config.port, config.host, () => {
-      console.info(`running server on ${config.host}:${config.port}`);
-    })
+    serverControl.start(`running server on ${config.host}:${config.port}`)
   );
+  return serverControl;
 };

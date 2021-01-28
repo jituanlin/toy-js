@@ -1,7 +1,5 @@
 import * as F from 'fp-ts';
-
 import { IncomingRequestM, Services } from '@toy-js/shared/lib/types';
-
 import { parsePayloadThenInvokeService } from './invoke';
 import { Response } from './utils/Response';
 

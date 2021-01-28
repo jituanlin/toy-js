@@ -21,11 +21,12 @@
   },
   "scripts": {
     "publish": "lerna run build && lerna publish from-package",
-    "bootstrap":"npx lerna clean -y && npx lerna bootstrap --hoist"
+    "bootstrap": "lerna run build && npx lerna clean -y && npx lerna bootstrap --hoist"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "fp-ts": "^3.0.0-alpha.6",
+    "lerna": "^3.22.1",
     "rxjs": "^6.6.3"
   },
   "author": "jituanlin",

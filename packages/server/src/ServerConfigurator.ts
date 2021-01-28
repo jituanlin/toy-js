@@ -1,6 +1,8 @@
 import { defaultHost, defaultPort } from '@toy-js/shared/lib/constants';
-import { IncomingRequestSubscriber, ServerConfig } from '@toy-js/shared/lib/types';
-
+import {
+  IncomingRequestSubscriber,
+  ServerConfig,
+} from '@toy-js/shared/lib/types';
 import { IncomingReqSubscriber } from './IncomingReqSubscriber';
 import { services } from './services';
 

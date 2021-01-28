@@ -18,7 +18,7 @@ const invokeService = (services: Services) => (
 ): F.taskEither.TaskEither<CodeError, unknown> => {
   const service = F.function.pipe(
     services,
-    F.readonlyArray.findFirst(service=>service.name === serviceName),
+    F.readonlyArray.findFirst((service) => service.name === serviceName),
     F.either.fromOption(() => new MissServiceError(serviceName))
   );
 
@@ -44,7 +44,7 @@ const invokeService = (services: Services) => (
   return F.function.pipe(
     serviceInstance,
     F.taskEither.fromEither,
-    F.taskEither.chain(invokeMethod)
+    F.taskEither.chainW(invokeMethod)
   );
 };
 
@@ -53,7 +53,7 @@ export const parsePayloadThenInvokeService = (services: Services) => (
 ): F.taskEither.TaskEither<CodeError, unknown> =>
   F.function.pipe(
     getRequestBody<InvokePayload>(req),
-    F.taskEither.chain((invokePayload) =>
+    F.taskEither.chainW((invokePayload) =>
       invokeService(services)(
         invokePayload.serviceName,
         invokePayload.methodName,

@@ -3,13 +3,13 @@ export enum Codes {
   InvokeFail,
   ParseInvokePayload,
   MissService,
-  MissMethod,
+  MissMethod
 }
 
 export enum Messages {
-  InvokeSuccess = 'success',
+  InvokeSuccess = 'success'
 }
 
-export const defaultHost = '127.0.0.1';
+export const defaultHost = '127.0.0.1'
 
-export const defaultPort = 8090;
+export const defaultPort = 8090
