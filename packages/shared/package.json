@@ -21,7 +21,9 @@
     "url": "git+https://github.com/jituanlin/toy-js.git"
   },
   "scripts": {
-    "build": "rm -R ./lib & tsc"
+    "build": "rm -R ./lib & tsc",
+    "test": "jest -i",
+    "coverage": "jest -i --coverage"
   },
   "bugs": {
     "url": "https://github.com/jituanlin/toy-js/issues"

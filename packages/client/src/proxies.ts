@@ -35,7 +35,7 @@ export const MethodProxy = (
         serviceName,
         methodName,
         args,
-      });
+      }) as Promise<T>;
     },
   });
 };

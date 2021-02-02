@@ -41,4 +41,4 @@ export type IncomingRequestM = IncomingRequest<{ request: IncomingMessage }>
 
 export type IncomingRequestSubscriber = (req: IncomingRequestM) => void
 
-export type FetchInvokeResult = <T = unknown>(payload: InvokePayload) => Promise<T>
+export type FetchInvokeResult<T = unknown> = (payload: InvokePayload) => Promise<T>

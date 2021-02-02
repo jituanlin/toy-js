@@ -1,5 +1,9 @@
 import { defaultHost, defaultPort } from '@toy-js/shared/lib/constants';
-import { ClientConfig, FetchInvokeResult, ServerConfig } from '@toy-js/shared/lib/types';
+import {
+  ClientConfig,
+  FetchInvokeResult,
+  ServerConfig,
+} from '@toy-js/shared/lib/types';
 
 import { fetchInvokeResult } from './fetchs';
 
@@ -26,7 +30,9 @@ export class ClientConfigurator {
     return this;
   }
 
-  setFetchInvokeResult(fetchInvokeResult: FetchInvokeResult): this {
+  setFetchInvokeResult<T = unknown>(
+    fetchInvokeResult: FetchInvokeResult<T>
+  ): this {
     this.fetchInvokeResult = fetchInvokeResult;
     return this;
   }

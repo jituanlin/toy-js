@@ -18,7 +18,9 @@
     "socket.io"
   ],
   "scripts": {
-    "build": "rm -R ./lib & tsc"
+    "build": "rm -R ./lib & tsc",
+    "test": "jest -i",
+    "coverage": "jest -i --coverage"
   },
   "engines": {
     "node": ">=10"

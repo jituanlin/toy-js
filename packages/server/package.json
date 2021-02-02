@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "build": "rm -R ./lib & tsc",
-    "test": "jest"
+    "test": "jest -i",
+    "coverage": "jest -i --coverage"
   },
   "engines": {
     "node": ">=10"
