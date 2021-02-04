@@ -37,8 +37,8 @@ export class ClientConfigurator {
     return this;
   }
 
-  getFetchInvokeResult(): FetchInvokeResult {
-    return this.fetchInvokeResult;
+  getFetchInvokeResult<T = unknown>(): FetchInvokeResult<T> {
+    return this.fetchInvokeResult as FetchInvokeResult<T>;
   }
 }
 

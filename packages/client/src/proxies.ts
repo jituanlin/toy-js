@@ -2,40 +2,50 @@ import { Constructor } from '@toy-js/shared/lib/types';
 import { clientConfigurator } from './ClientConfigurator';
 
 export const ConstructorProxy = (serviceName: string): Constructor<unknown> => {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  return (new Proxy(function () {}, {
-    construct() {
-      return InstanceProxy(serviceName);
+  const constructor = (function () {} as unknown) as Constructor<unknown>;
+
+  const proxy = new Proxy(constructor, {
+    construct(_, args: readonly unknown[]) {
+      return InstanceProxy(serviceName, args);
     },
-  }) as unknown) as Constructor<unknown>;
+  });
+
+  return proxy;
 };
 
 export const InstanceProxy = (
-  serviceName: string
+  serviceName: string,
+  constructArgs: readonly unknown[]
 ): Record<string, (...args: unknown[]) => unknown> => {
-  return new Proxy(
-    {},
-    {
-      get(_, p: string) {
-        return MethodProxy(serviceName, p);
-      },
-    }
-  );
+  const target = {};
+
+  const proxy = new Proxy(target, {
+    get(_, methodName: string) {
+      return MethodProxy(serviceName, methodName, constructArgs);
+    },
+  });
+
+  return proxy;
 };
 
 export const MethodProxy = (
   serviceName: string,
-  methodName: string
-): ((...args: unknown[]) => unknown) => {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  return new Proxy(function () {}, {
+  methodName: string,
+  constructArgs: readonly unknown[]
+): ((...args: unknown[]) => Promise<unknown>) => {
+  const method = function () {} as (...args: unknown[]) => Promise<unknown>;
+
+  const proxy = new Proxy(method, {
     apply<T = unknown>(_: any, __: any, args: readonly unknown[]): Promise<T> {
-      const fetchInvokeResult = clientConfigurator.getFetchInvokeResult();
+      const fetchInvokeResult = clientConfigurator.getFetchInvokeResult<T>();
       return fetchInvokeResult({
         serviceName,
         methodName,
         args,
-      }) as Promise<T>;
+        constructArgs,
+      });
     },
   });
+
+  return proxy;
 };

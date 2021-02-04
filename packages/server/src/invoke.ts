@@ -14,7 +14,8 @@ import { IncomingMessage } from 'http';
 const invokeService = (services: Services) => (
   serviceName: string,
   methodName: string,
-  args: readonly unknown[]
+  args: readonly unknown[],
+  constructArgs: readonly unknown[]
 ): F.taskEither.TaskEither<CodeError, unknown> => {
   const service = F.function.pipe(
     services,
@@ -26,7 +27,7 @@ const invokeService = (services: Services) => (
     service,
     F.either.map(
       (service: Constructor<unknown>) =>
-        new service() as Record<string, unknown>
+        new service(...constructArgs) as Record<string, unknown>
     )
   );
 
@@ -57,7 +58,8 @@ export const parsePayloadThenInvokeService = (services: Services) => (
       invokeService(services)(
         invokePayload.serviceName,
         invokePayload.methodName,
-        invokePayload.args
+        invokePayload.args,
+        invokePayload.constructArgs
       )
     )
   );

@@ -21,7 +21,8 @@
   },
   "scripts": {
     "publish": "lerna run build && lerna publish from-package",
-    "bootstrap": "lerna run build && npx lerna clean -y && npx lerna bootstrap --hoist"
+    "bootstrap:build": "lerna run build && npx lerna clean -y && npx lerna bootstrap --hoist",
+    "bootstrap: only-build-shared": "cd packages/shared && npm run build && cd ../../ && npx lerna clean -y && npx lerna bootstrap --hoist"
   },
   "dependencies": {
     "axios": "^0.21.1",

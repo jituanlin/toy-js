@@ -3,6 +3,7 @@ import { InvokePayload } from '@toy-js/shared/lib/types';
 import { services } from './services';
 
 interface File {
+  new (mode: string, zip: boolean): this;
   readFile(path: string): Promise<string>;
 }
 
@@ -13,17 +14,16 @@ describe('proxies', () => {
   );
 
   it('should collect context to construct a request', async function () {
-    const fileService = new services.File<File>();
+    const fileService = new services.File<File>('2', true);
     const idx = await fileService.readFile('./.tmp.txt');
     expect(idx).toEqual(1);
     expect(payloads).toEqual([
-      [
-        {
-          args: ['./.tmp.txt'],
-          methodName: 'readFile',
-          serviceName: 'File',
-        },
-      ],
+      {
+        args: ['./.tmp.txt'],
+        methodName: 'readFile',
+        serviceName: 'File',
+        constructArgs: ['2', true],
+      },
     ]);
   });
 });

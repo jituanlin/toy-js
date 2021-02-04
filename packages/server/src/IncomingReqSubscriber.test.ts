@@ -5,8 +5,9 @@ import { Codes } from '@toy-js/shared/lib/constants';
 
 describe('IncomingReqSubscriber', () => {
   class FileService {
-    async readFile(): Promise<string> {
-      return '42';
+    constructor(readonly n: number, readonly str: string) {}
+    async readFile(): Promise<[number, string]> {
+      return [this.n, this.str];
     }
     async readFileError(): Promise<never> {
       throw new Error('mock');
@@ -29,9 +30,10 @@ describe('IncomingReqSubscriber', () => {
       serviceName: FileService.name,
       methodName: 'readFile',
       args: [],
+      constructArgs: [1, '2'],
     };
     const { data } = await serverControl.client.post(payload);
-    expect(data).toEqual('42');
+    expect(data).toEqual([1, '2']);
   });
 
   it('should response MissMethod error when method missing', async () => {
@@ -39,6 +41,7 @@ describe('IncomingReqSubscriber', () => {
       serviceName: FileService.name,
       methodName: 'noExist',
       args: [],
+      constructArgs: [1, '2'],
     };
     const response = await serverControl.client.post(payload);
     expect(response).toEqual({
@@ -53,6 +56,7 @@ describe('IncomingReqSubscriber', () => {
       serviceName: 'NotExistService',
       methodName: 'readFile',
       args: [],
+      constructArgs: [1, '2'],
     };
     const response = await serverControl.client.post(payload);
     expect(response).toEqual({
@@ -67,6 +71,7 @@ describe('IncomingReqSubscriber', () => {
       serviceName: FileService.name,
       methodName: 'readFileError',
       args: [],
+      constructArgs: [1, '2'],
     };
     const response = await serverControl.client.post(payload);
     expect(response).toEqual({

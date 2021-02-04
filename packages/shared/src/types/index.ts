@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
-export type Constructor<T> = {
-  new (...args: readonly unknown[]): T
+export type Constructor<T, P extends any[] = any[]> = {
+  new (...args: P): T
 }
 
 export type ServiceConstructor = Constructor<{
@@ -12,6 +12,7 @@ export interface InvokePayload<T = unknown> {
   serviceName: string
   methodName: string
   args: readonly T[]
+  constructArgs: readonly unknown[]
 }
 
 export interface ResultPayload<T = unknown> {
